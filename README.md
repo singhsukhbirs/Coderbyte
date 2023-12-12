@@ -1,7 +1,7 @@
 # Coderbyte
-# <B> change variable name coordingly </B>
+# <B> change variable name accordingly </B>
 <H3> Sql Yearly Regional vendors</H3>
-SELECT cur.Year
+<p>SELECT cur.Year
         , cur.Region
         , cur.UniqueVendors
         , CASE
@@ -36,4 +36,4 @@ ORDER BY cur.Year ASC
  , cur.UniqueVendors DESC
  , cur.Region ASC
 
-;
+;</p>
