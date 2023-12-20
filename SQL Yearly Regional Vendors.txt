@@ -73,10 +73,7 @@ LEFT JOIN (
 
 ORDER BY cur.Year ASC
  , cur.UniqueVendors DESC
- , cur.Region ASC
-
-;
-
+ , cur.Region ASC;
 
 /*****************************************************************************************************************
 
