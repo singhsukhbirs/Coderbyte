@@ -1,1 +1,62 @@
+/*****************************************************************************************************************
+*                                              SQL Position Hierarchy                                  	 	 *
+*                                                                                                                *
+*        Your table: maintable_ZWKBJ                                                                         	 *
+*        MySQL version: 8.0.23                                                                                   *
+*                                                                                                                *
+*	In this MySQL challenge, your query should determine the company's
+* 	hierarchical structure based on the Position and ReportsTo columns. 
+*	The output should include the Position of the individual, their FirstName 
+*	and LastName, and the Position of the person they report to. Exclude 
+*	entries where ReportsTo is null. The result should be ordered by the 
+*	Position of the person they report to and then by the individual's Position
+*	in ascending alphabetical order. The expected columns in the output are: 
+*	Position, FirstName, LastName, and ReportsToPosition.
+*
+*				ID	FirstName	LastName	ReportsTo	Position	Age
+*				1	Daniel		Smith		Bob Boss	Engineer	25
+*				2	Mike		White		Bob Boss	Contractor	22
+*				3	Jenny		Richards	null		CEO		45
+*				4	Robert		Black		Daniel Smith	Sales		22
+*				5	Noah		Fritz		Jenny Richards	Assistant	30
+*				6	David		S		Jenny Richards	Director	32
+*				7	Ashley		Wells		David S		Assistant	25
+*				8	Ashley		Johnson		null		Intern		25
+*	
+*						 
+*****************************************************************************************************************/          			 						 
+SELECT 
+  t1.Position,
+  t1.FirstName,
+  t1.LastName,
+  t2.Position as ReportsToPosition
+  FROM maintable_FE3B0 as t1
+  INNER JOIN maintable_FE3B0 as t2
+  ON CONCAT(t2.FirstName, " ", t2.LastName) = t1.ReportsTo
+  WHERE t1.ReportsTo IS NOT NULL
+  ORDER BY ReportsToPosition ASC, t1.Position ASC
+/**********************************************OR*****************************************************************/
+SELECT a.Position, a.FirstName, a.LastName, b.Position as ReportsToPosition
+ FROM maintable_FE3B0 a
+inner join maintable_FE3B0 b
+on a.ReportsTo =  Concat(b.FirstName , " " , b.LastName)
+Where a.ReportsTo is not null
+order  by ReportsToPosition, Position
+/*********************************************OR******************************************************************/
+SELECT T1.Position, T1.FirstName, T1.LastName, T2.Position AS ReportsToPosition
+FROM maintable_FE3B0 T1, maintable_FE3B0 T2
+WHERE T1.ReportsTo = CONCAT(T2.FirstName," ",T2.LastName) AND T1.ReportsTo IS NOT NULL
+ORDER BY ReportsToPosition ASC, Position ASC;
+*****************************************************************************************************************/  
+						OUTPUT:
+
+			Position	FirstName	LastName	ReportsToPosition
+			Assistant	Noah		Fritz		CEO
+			Director	David		S		CEO
+			Assistant	Ashley		Wells		Director
+			Sales		Robert		Black		Engineer
+
+*****************************************************************************************************************/
+
+
 
