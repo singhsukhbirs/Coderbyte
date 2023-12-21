@@ -61,9 +61,15 @@ SELECT GroupID, CompanyName, count(*) as Count FROM maintable_SRLDY
 natural join cb_vendorinformation
 group by GroupID
 order by Count,GroupID
-/*********************************************OR******************************************************************/
+/***********************************************OR****************************************************************/
 SELECT a.GroupId, b.CompanyName, count(a.GroupId) as 'Count' FROM maintable_SRLDY a inner join cb_vendorinformation b 
 on a.GroupId = b.GroupId group by GroupId order by count(a.GroupId) Asc,GroupId;
+**************************************************OR*************************************************************/  
+SELECT e.GroupID, e.CompanyName,count(e.CompanyName) as Count FROM maintable_1EP98 m
+ join cb_vendorinformation e
+on  e.GroupID=m.GroupID
+group by GroupID
+order by count ,GroupID
 *****************************************************************************************************************/  
 						OUTPUT:
 
