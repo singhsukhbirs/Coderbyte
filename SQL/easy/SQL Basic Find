@@ -1,1 +1,35 @@
+/*****************************************************************************************************************
+*                                              SQL Basic Find                                     	 	 *
+*                                                                                                                *
+*        Your table: maintable_WVA8U                                                                             *
+*        MySQL version: 8.0.23                                                                                   *
+*                                                                                                                *
+*
+*       In this MySQL challenge, your query should return FirstName,
+*	LastName, and the Age from your table for all users who are 
+*	above the age of 25 ordered by ID in ascending order. Your 
+*	output should look like the following table.          			 						 
+*                                                                                                                
+*	ID	FirstName	LastName	Age
+*	1	Daniel		Smith		25	
+*	2	Mike		Smith		22
+*	3	Jenny		Richards	28
+*	4	Robert		Black		22
+*	5	Noah		Fritz		30
+*	6	Ashley		Johnson		25
+*
+* 
+*****************************************************************************************************************/        			 						 
+SELECT FirstName, LastName, Age FROM maintable_WVA8U
+where age>25
+*****************************************************************************************************************/  
+				OUTPUT:
+
+			FirstName	LastName	Age
+			Jenny		Richards	28
+			Noah		Fritz		30
+
+*****************************************************************************************************************/
+
+
 
