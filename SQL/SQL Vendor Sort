@@ -1,0 +1,84 @@
+/*****************************************************************************************************************
+*                                              SQL Vendor Sort                                     	 	 *
+*                                                                                                                *
+*        Your table: maintable_A1RJS                                                                             *
+*        MySQL version: 8.0.23                                                                                   *
+*                                                                                                                *
+*       In this MySQL challenge, your query should return the vendor information 
+*	along with the values from the table cb_vendorinformation. You should combine
+*	the values of the two tables based on the GroupID column. The final query should
+*	consolidate the rows to be grouped by FirstName, and a Count column should be added
+*	at the end that adds up the number of times that person shows up in the table. 
+*	The output table should be sorted by the Count column in ascending order and then 
+*	sorted by CompanyName in alphabetical order. Your output should look like the following table.                  			 						 
+*                                                                                                                
+*	GroupID	Year	VendorID	FirstName	LastName	Job		ExternalID	Region
+*	35	2018	102		Daniel		Knolle		Manager		39765		West
+*	35	2018	1988		Arnold		Sully		Manager		48507		West
+*	35	2018	1988		Arnold		Sully		Manager		48507		East
+*	36	2018	102		Daniel		Knolle		Manager		8219		West
+*	36	2018	1988		Arnold		Sully		Manager		48507		West
+*	39	2018	102		Daniel		Knolle		Manager		8219		West
+*	39	2018	102		Daniel		Knolle		Manager		39765		West
+*	39	2018	650		Lisa		Roberts		Manager		1860		West
+*	39	2018	650		Lisa		Roberts		Manager		5397		Central
+*	39	2018	1988		Arnold		Sully		Manager		48507		West
+*	39	2018	12		Mary		Dial		Manager		1860		East
+*	40	2019	102		Daniel		Knolle		Manager		8219		East
+*	40	2019	102		Daniel		Knolle		Manager		39765		West
+*	40	2019	650		Lisa		Roberts		Manager		1860		West
+*	40	2019	1988		Arnold		Sully		Manager		39765		West
+*	40	2019	1988		Arnold		Sully		Manager		48507		West
+*	5	2012	478		Dennis		S		Contractor	24122		North
+*	6	2012	478		Dennis		S		Contractor	10272		North
+*	6	2012	478		Larry		Weis		Contractor	4219		North
+*	6	2012	478		Larry		Weis		Contractor	10272		North
+*	27	2009	12		Mary		Dial		Manager		1860		East	
+*
+*
+*
+*
+*				cb_vendorinformation
+*
+*				GroupID	CompanyName
+*				35	Shipping & Co.
+*				36	Johnson and Sons
+*				39	News Corp.
+*				40	FireConsulting
+*				5	WaterBus Enterprise
+*				6	Alloy LLC
+*				27	Machinx
+*
+*						 
+*****************************************************************************************************************/
+
+SELECT a.GroupID,a.FirstName,a.LastName,a.Job,a.ExternalID,b.CompanyName,
+count(b.CompanyName) as Count FROM maintable_T6RUH a
+left join cb_vendorinformation b
+on a.GroupID=b.GroupID
+group by FirstName
+ORDER BY COUNT,CompanyName
+
+/*********************************************OR*******************************************************************/
+
+SELECT c.GroupID, FirstName, LastName, Job, ExternalID, CompanyName,  count(*) as Count FROM maintable_OHSP5 m
+inner join cb_vendorinformation c on c.GroupID=m.GroupID
+group by FirstName
+order by Count asc,CompanyName
+
+
+/*****************************************************************************************************************/
+
+						OUTPUT:
+
+	GroupID	FirstName	LastName	Job		ExternalID	CompanyName		Count
+	6	Larry		Weis		Contractor	4219		Alloy LLC		2
+	39	Mary		Dial		Manager		1860		News Corp.		2
+	5	Dennis		S		Contractor	24122		WaterBus Enterprise	2
+	39	Lisa		Roberts		Manager		1860		News Corp.		3
+	35	Daniel		Knolle		Manager		39765		Shipping & Co.		6
+	35	Arnold		Sully		Manager		48507		Shipping & Co.		6
+
+*****************************************************************************************************************/
+
+
