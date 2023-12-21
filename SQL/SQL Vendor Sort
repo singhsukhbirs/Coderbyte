@@ -51,24 +51,18 @@
 *
 *						 
 *****************************************************************************************************************/
-
 SELECT a.GroupID,a.FirstName,a.LastName,a.Job,a.ExternalID,b.CompanyName,
 count(b.CompanyName) as Count FROM maintable_T6RUH a
 left join cb_vendorinformation b
 on a.GroupID=b.GroupID
 group by FirstName
 ORDER BY COUNT,CompanyName
-
 /*********************************************OR*******************************************************************/
-
 SELECT c.GroupID, FirstName, LastName, Job, ExternalID, CompanyName,  count(*) as Count FROM maintable_OHSP5 m
 inner join cb_vendorinformation c on c.GroupID=m.GroupID
 group by FirstName
 order by Count asc,CompanyName
-
-
 /*****************************************************************************************************************/
-
 						OUTPUT:
 
 	GroupID	FirstName	LastName	Job		ExternalID	CompanyName		Count
