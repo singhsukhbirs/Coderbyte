@@ -1,0 +1,44 @@
+/*****************************************************************************************************************
+*                                              SQL Company Boss							 *
+*                                                                                                                *
+*        Your table: maintable_A1RJS                                                                             *
+*        MySQL version: 8.0.23                                                                                   *
+*                                                                                                                *
+*       In this MySQL challenge, your query should return all the people who 
+*	report to either Jenny Richards or have a NULL value in ReportsTo. 
+*	The rows should be ordered by Age. Your query should also add a column 
+*	at the end with a title of Boss Title where the value is either None or CEO. 
+*	Your output should look like the following table.			 						 
+*                                                                                                                
+*	ID	FirstName	LastName	ReportsTo	Position	Age
+*	1	Daniel		Smith		Bob Boss	Engineer	25
+*	2	Mike		White		Bob Boss	Contractor	22
+*	3	Jenny		Richards	null		CEO		45
+*	4	Robert		Black		Daniel Smith	Sales		22
+*	5	Noah		Fritz		Jenny Richards	Assistant	30
+*	6	David		S		Jenny Richards	Director	32
+*	7	Ashley		Wells		David S		Assistant	25
+*	8	Ashley		Johnson		null		Intern		25
+*						 
+*****************************************************************************************************************/
+
+SELECT FirstName,LastName,ReportsTo,Position,Age,
+case when ReportsTo ="Jenny Richards" 
+THEN "ceo" ELSE "None" end as "Boss Title"
+FROM maintable_0EXZK
+where ReportsTo is null or ReportsTo="Jenny Richards"
+order by age;
+
+/*****************************************************************************************************************/
+
+						OUTPUT:
+
+		FirstName	LastName	ReportsTo	Position	Age	Boss Title
+		Ashley		Johnson		null		Intern		25	None
+		Noah		Fritz		Jenny Richards	Assistant	30	ceo
+		David		S		Jenny Richards	Director	32	ceo
+		Jenny		Richards	null		CEO		45	None
+
+*****************************************************************************************************************/
+
+
