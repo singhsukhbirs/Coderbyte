@@ -44,8 +44,6 @@ FROM maintable_OTR4I
 WHERE Year = 2018
 GROUP BY Region
 ORDER BY UniqueVendors desc, TotalEntries desc; 
-
-
 /*****************************************************************************************************************/
 
 						OUTPUT:
