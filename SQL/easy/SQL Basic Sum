@@ -1,1 +1,34 @@
+/*****************************************************************************************************************
+*                                              SQL Basic Sum                                     	 	 *
+*                                                                                                                *
+*        Your table: maintable_WVA8U                                                                             *
+*        MySQL version: 8.0.23                                                                                   *
+*                                                                                                                *
+*
+*       In this MySQL challenge, your query should return LastName 
+*	and the sum of Age from your table for all users with a 
+*	LastName = Smith. The column title of the summed ages should 
+*	be SumAge. Your output should look like the following table.         			 						 
+*                                                                                                                
+*	ID	FirstName	LastName	Age
+*	1	Daniel		Smith		25	
+*	2	Mike		Smith		22
+*	3	Jenny		Richards	28
+*	4	Robert		Black		22
+*	5	Noah		Fritz		30
+*	6	Ashley		Johnson		25
+*
+* 
+*****************************************************************************************************************/        			 						 
+SELECT LAstname,sum(age) as SumAge FROM maintable_A9RTO
+where lastname="Smith"
+*****************************************************************************************************************/  
+				OUTPUT:
+
+			LAstname	SumAge
+			Smith		47
+
+*****************************************************************************************************************/
+
+
 
