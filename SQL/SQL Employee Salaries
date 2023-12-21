@@ -1,0 +1,67 @@
+/*****************************************************************************************************************
+*                                               SQL Employee Salaries                                      	 *
+*                                                                                                                *
+*        Your table: maintable_QL7OI                                                                             *
+*        MySQL version: 8.0.23                                                                                   *
+*                                                                                                                *
+*       In this MySQL challenge, your query should return the information			
+*	for the employee with the third highest salary. Write a query that 
+*	will find this employee and return that row, but then replace the 
+*	DivisionID column with the corresponding DivisionName from the table 
+*	cb_companydivisions. You should also replace the ManagerID column with
+*	the ManagerName if the ID exists in the table and is not NULL.                  			 						 
+*                                                                                                                
+*	ID	Name		DivisionID	ManagerID	Salary
+*	356	Daniel Smith	100		133		40000
+*	122	Arnold Sully	101		null		60000
+*	467	Lisa Roberts	100		null		80000
+*	112	Mary Dial	105		467		65000
+*	775	Dennis Front	103		null		90000
+*	111	Larry Weis	104		35534		75000
+*	222	Mark Red	102		133		86000
+*	577	Robert Night	105		12353		76000
+*	133	Susan Wall	105		577		110000		
+*
+*
+*
+*
+*				cb_companydivisions
+*
+*				ID	DivisionName
+*				100	Accounting
+*				101	IT
+*				102	Sales
+*				103	Marketing
+*				104	Engineering
+*				105	Customer Support
+*						 
+*****************************************************************************************************************/
+
+SELECT m1.id as ID, m1.name as Name, c.DivisionName as DivisionName,
+m2.name as ManagerName, m1.salary as Salary
+FROM maintable_PID3L as m1 
+left join cb_companydivisions as c on m1.divisionid = c.id
+left join maintable_PID3L as m2
+on m1.managerid = m2.id
+order by m1.salary desc
+limit 2, 1
+
+/*********************************************OR*******************************************************************/
+
+select a.ID, a.Name, d.DivisionName as DivisionName, b.Name as ManagerName, a.Salary
+from maintable_3AR26 a
+left join cb_companydivisions d on d.ID = a.DivisionID
+left join maintable_3AR26 b on b.ID = a.ManagerID
+order by a.Salary desc limit 2,1
+
+
+/*****************************************************************************************************************/
+
+						OUTPUT:
+
+ID	Name		DivisionName	ManagerName	Salary
+222	Mark Red	Sales		Susan Wall	86000
+
+*****************************************************************************************************************/
+
+
