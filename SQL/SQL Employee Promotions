@@ -1,0 +1,85 @@
+/*****************************************************************************************************************
+*                                               SQL Employee Promotions                                          *
+*                                                                                                                *
+*        Your table: maintable_WALWB                                                                            *
+*        MySQL version: 8.0.23                                                                                   *
+*                                                                                                                *
+*       In this MySQL challenge, your query should identify employees who					 *
+* 	have a higher salary than their manager. Display each employee's Name,					 *						
+*	Salary, and ManagerName. If the employee does not have a manager, the 					 *
+*	ManagerName should be displayed as "No Manager". The result should be 					 *
+*	ordered by the difference between the employee's and manager's salaries					 *
+*	in descending order. Additionally, include a column titled PromotionOpportunity				 *
+*	that indicates "Yes" if the employee's salary is higher than their manager's and			 *
+*	"No" otherwise.                    			 						 *
+*                                                                                                                *
+*	Name		Salary	ManagerName	PromotionOpportunity						 *
+*	Dennis Front	90000	No Manager	No								 *
+*	Lisa Roberts	80000	No Manager	No								 *
+*	Robert Night	76000	No Manager	No								 *
+*	Larry Weis	75000	No Manager	No								 *
+*	Arnold Sully	60000	No Manager	No								 *
+*	Susan Wall	110000	Robert Night	Yes								 *
+*	Mary Dial	65000	Lisa Roberts	No								 *
+*	Mark Red	86000	Susan Wall	No								 *
+*	Daniel Smith	40000	Susan Wall	No 								 *
+*														 *
+*                                                                                                                *
+*****************************************************************************************************************/
+
+SELECT emp.Name
+         , emp.Salary
+         , IFNULL(mng.Name, 'No Manager') AS ManagerName
+         , CASE
+            WHEN emp.Salary > mng.Salary THEN 'Yes'
+            ELSE 'No'
+         END as PromotionOpportunity
+
+FROM (
+  SELECT Name
+    , Salary
+    , ManagerID
+  FROM maintable_1HJXO
+) emp
+
+LEFT JOIN (
+  SELECT ID
+    , Name
+    , Salary
+  FROM maintable_1HJXO
+) mng ON emp.ManagerID = mng.ID
+
+ORDER BY (emp.Salary - COALESCE(mng.Salary, 0)) DESC
+;
+
+/*********************************************OR*******************************************************************/
+
+SELECT 
+  a.Name, 
+  a.Salary,
+  IF(b.Name IS NULL, "No Manager",b.Name ) AS ManagerName,
+  IF(a.Salary > b.Salary, "Yes", "No") AS PromotionOpportunity 
+FROM maintable_FWCGS AS a
+LEFT JOIN maintable_FWCGS as b
+ON a.ManagerID = b.ID
+ORDER BY (a.Salary - IFNULL(b.Salary, 0)) DESC
+
+
+/*****************************************************************************************************************/
+
+						OUTPUT:
+
+ID	Name	DivisionID	ManagerID	Salary
+356	Daniel Smith	100	133		40000
+122	Arnold Sully	101	null		60000
+467	Lisa Roberts	100	null		80000
+112	Mary Dial	105	467		65000
+775	Dennis Front	103	null		90000
+111	Larry Weis	104	35534		75000
+222	Mark Red	102	133		86000
+577	Robert Night	105	12353		76000
+133	Susan Wall	105	577		110000
+
+*****************************************************************************************************************/
+
+
