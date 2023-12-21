@@ -1,14 +1,14 @@
 /*****************************************************************************************************************
-*                                              SQL Sort Ages                                     	 	 *
+*                                              SQL Middle Aged                                     	 	 *
 *                                                                                                                *
-*        Your table: maintable_WVA8U                                                                             *
+*        Your table: maintable_QQ2M0                                                                             *
 *        MySQL version: 8.0.23                                                                                   *
 *                                                                                                                *
 *
-*       In this MySQL challenge, your query should return the rows 
-*	from your table where LastName = Smith or FirstName = Robert 
-*	and the rows should be sorted by Age in ascending order. 
-*	Your output should look like the following table.      			 						 
+*       In this MySQL challenge, your query should return the FirstName,
+*	LastName, and Age of all users aged between 23 and 27 (inclusive).
+*	The results should be ordered by Age in descending order and then 
+*	by ID in ascending order for those with the same age.     			 						 
 *                                                                                                                
 *	ID	FirstName	LastName	Age
 *	1	Daniel		Smith		25	
@@ -20,16 +20,17 @@
 *
 * 
 *****************************************************************************************************************/        			 						 
-SELECT * FROM maintable_CI7PD
-where FirstName="Robert" or LastName="Smith"
-order by age ;
+SELECT FirstName, LastName, Age
+FROM maintable_L6K4D
+WHERE Age BETWEEN 23 AND 27
+ORDER BY Age DESC, ID ASC
+;
 *****************************************************************************************************************/  
 				OUTPUT:
 
-			ID	FirstName	LastName	Age
-			2	Mike		Smith		22
-			4	Robert		Black		22
-			1	Daniel		Smith		25
+			FirstName	LastName	Age
+			Daniel		Smith		25
+			Ashley		Johnson		25
 
 
 *****************************************************************************************************************/
