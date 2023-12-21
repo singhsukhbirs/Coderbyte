@@ -1,1 +1,37 @@
+/*****************************************************************************************************************
+*                                              SQL Sort Ages                                	 	         *
+*                                                                                                                *
+*        Your table: maintable_8H98L                                                                             *
+*        MySQL version: 8.0.23                                                                                   *
+*                                                                                                                *
+*
+*       In this MySQL challenge, your query should return the rows from your table 
+*	where LastName = Smith or FirstName = Robert and the rows should be sorted 
+*	by Age in ascending order. Your output should look like the following table.   			 						 
+*                                                                                                                
+*	ID	FirstName	LastName	Age
+*	1	Daniel		Smith		25	
+*	2	Mike		Smith		22
+*	3	Jenny		Richards	28
+*	4	Robert		Black		22
+*	5	Noah		Fritz		30
+*	6	Ashley		Johnson		25
+*
+* 
+*****************************************************************************************************************/        			 						 
+select id, firstname,lastname,age from  maintable_8H98L
+where firstname="Robert" or lastname="Smith" 
+order by age;
+*****************************************************************************************************************/  
+				OUTPUT:
+
+			id	firstname	lastname	age
+			2	Mike		Smith		22
+			4	Robert		Black		22
+			1	Daniel		Smith		25
+
+
+*****************************************************************************************************************/
+
+
 
