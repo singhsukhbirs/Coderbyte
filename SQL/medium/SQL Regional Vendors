@@ -44,15 +44,11 @@ WHERE Year = 2018
 GROUP BY Region
 ORDER BY UniqueVendors desc, TotalEntries desc; 
 /*****************************************************************************************************************/
-
 						OUTPUT:
-
 				Region	UniqueVendors	TotalEntries
 				West	3		8
 				East	2		2
 				Central	1		1
-
-
 *****************************************************************************************************************/
 
 
