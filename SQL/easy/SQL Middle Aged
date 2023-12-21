@@ -18,8 +18,8 @@
 *
 * 
 *****************************************************************************************************************/        			 						 
-SELECT Distinct firstname FROM maintable_D71E1
-order by firstname
+SELECT FirstName,Lastname,age FROM maintable_7V1PS
+where age between 23 and 27
 *****************************************************************************************************************/  
 				OUTPUT:
 
