@@ -77,7 +77,37 @@ ORDER BY cur.Year ASC
 
 ;
 
-
+******************************************************OR*********************************************************/
+SELECT 
+  t1.Year,
+  t1.Region,
+  t1.UniqueVendors,
+  CASE
+    WHEN t2.PUniqueVendors IS NULL THEN "N/A"
+    ELSE (
+      CONCAT(ROUND(((t1.UniqueVendors - t2.PUniqueVendors) / t2.PUniqueVendors) * 100, 2), '%')
+    )
+  END as PercentageChangeFromLastYear
+FROM (
+  SELECT 
+    Year,
+    Region,
+    COUNT(DISTINCT VendorID) as UniqueVendors
+  FROM maintable_TC0C2
+  GROUP BY Year, Region
+) t1
+LEFT JOIN (
+  SELECT
+    Year AS PYear,
+    Region As PRegion,
+    COUNT(DISTINCT VendorID) as PUniqueVendors
+  FROM maintable_TC0C2
+  GROUP BY PYear, PRegion
+) t2 ON t1.Region = t2.PRegion AND t1.Year = t2.PYear + 1
+ORDER BY
+  t1.Year ASC,
+  t1.UniqueVendors DESC,
+  t1.Region ASC
 /*****************************************************************************************************************
 
 						OUTPUT:
@@ -91,5 +121,3 @@ Year	Region	UniqueVendors	PercentageChangeFromLastYear
 2019	West	3		0.00%
 2019	East	1		-50.00%
 *****************************************************************************************************************/
-
-
