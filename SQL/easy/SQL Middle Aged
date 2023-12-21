@@ -1,1 +1,38 @@
+/*****************************************************************************************************************
+*                                              SQL Distinct First Names                                	 	 *
+*                                                                                                                *
+*        Your table: maintable_D71E1                                                                             *
+*        MySQL version: 8.0.23                                                                                   *
+*                                                                                                                *
+*
+*       In this MySQL challenge, your query should return all distinct 
+*	FirstName values from your table. The results should be ordered alphabetically.    			 						 
+*                                                                                                                
+*	ID	FirstName	LastName	Age
+*	1	Daniel		Smith		25	
+*	2	Mike		Smith		22
+*	3	Jenny		Richards	28
+*	4	Robert		Black		22
+*	5	Noah		Fritz		30
+*	6	Ashley		Johnson		25
+*
+* 
+*****************************************************************************************************************/        			 						 
+SELECT Distinct firstname FROM maintable_D71E1
+order by firstname
+*****************************************************************************************************************/  
+				OUTPUT:
+
+			firstname
+			Ashley
+			Daniel
+			Jenny
+			Mike
+			Noah
+			Robert
+
+
+*****************************************************************************************************************/
+
+
 
