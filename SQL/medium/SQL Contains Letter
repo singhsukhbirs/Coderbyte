@@ -1,1 +1,32 @@
+/*****************************************************************************************************************
+*                                              SQL Contains Letter                                     	 *
+*                                                                                                                *
+*        Your table: maintable_5UJYF                                                                             *
+*        MySQL version: 8.0.23                                                                                   *
+*                                                                                                                *
+*
+*       In this MySQL challenge, your query should return the number of rows 
+*	from your table where FirstName contains "e" and LastName has more than 
+*	5 characters. Your output should look like the following table.          			 						 
+*                                                                                                                
+*	ID	FirstName	LastName	Age
+*	1	Daniel		Smith		25	
+*	2	Mike		Smith		22
+*	3	Jenny		Richards	28
+*	4	Robert		Black		22
+*	5	Noah		Fritz		30
+*	6	Ashley		Johnson		25
+*
+* 
+*****************************************************************************************************************/        			 						 
+SELECT Count(*) FROM maintable_QS8Q0
+where Firstname like "%e%" and LENGTH(Lastname) > 5
+*****************************************************************************************************************/  
+				OUTPUT:
+
+			Count(*)
+			2
+
+*****************************************************************************************************************/
+
 
