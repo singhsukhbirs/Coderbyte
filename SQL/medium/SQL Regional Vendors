@@ -38,7 +38,6 @@
 *	27	2009	12		Mary		Dial		Manager		1860		East	
 * 
 *****************************************************************************************************************/
-
 SELECT Region, Count(DISTINCT VendorID) as UniqueVendors, Count(*) as TotalEntries 
 FROM maintable_OTR4I
 WHERE Year = 2018
